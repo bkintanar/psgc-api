@@ -1,4 +1,16 @@
-## How to use the PSGC API
+## PSGC API
+
+Live API can be found in http://52.15.217.179. (Will change once I find the time to get a domain)
+
+Postman: https://documenter.getpostman.com/view/78990/SWE3cKFB?version=latest
+
+Data Source: https://psa.gov.ph/classification/psgc/
+
+### Notes from PSGC publication
+
+1. The total number of provinces in the PSGC excludes the four (4) districts of National Capital Region which have been assigned special Province Codes persuant to Presidential Decree No. 921.
+2. The City of Isabela and Cotabato City are assigned special Province Codes to show that they are not administratively part of ARMM but part of Region IX (Zamboanga Peninsula) and Region XII (SOCCSKSARGEN) repectively.
+3. The sub-municipalities of the City of Manila - Tondo I/II, Binondo, Quiapo, etc., are assigned special municipal codes but not officially considered municipalities.
 
 ### Supported endpoints
 
@@ -22,6 +34,12 @@
 | GET|HEAD | api/sub-municipalities/{subMunicipality} |
 +----------+------------------------------------------+
 ```
+
+### Pagination
+
+Default pagination is set to 15 items per page. You can modify this by passing a `per_page=#` as a query parameter.
+
+`/api/regions?per_page=10`
 
 ### Includes
 
