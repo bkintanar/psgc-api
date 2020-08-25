@@ -38,7 +38,7 @@ class ParsePSGCFileCommand extends Command
     public function handle()
     {
         // source: https://psa.gov.ph/classification/psgc/
-        $filePath = storage_path('psgc-dec2019.csv');
+        $filePath = storage_path('psgc-mar2020.csv');
 
         $rows = SimpleExcelReader::create($filePath)->getRows();
 
@@ -82,7 +82,7 @@ class ParsePSGCFileCommand extends Command
     {
         $data['region_id'] = Region::orderBy('id', 'desc')->pluck('id')->first();
         District::create($data);
-        
+
         $this->latest = District::class;
     }
 
@@ -91,7 +91,7 @@ class ParsePSGCFileCommand extends Command
         $region   = Region::orderBy('id', 'desc')->first();
         $province = Province::orderBy('id', 'desc')->first();
         $district = District::orderBy('id', 'desc')->first();
-                    
+
         $geographic = optional($district)->created_at > optional($province)->created_at ? $district : $province;
 
         // 099701000 &x 129804000
