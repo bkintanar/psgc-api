@@ -18,11 +18,13 @@ class MunicipalityController extends Controller
     {
         $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
 
-        $cities = QueryBuilder::for(Municipality::class)
-            ->allowedIncludes('barangays')
-            ->paginate($perPage);
+        $municipalities = QueryBuilder::for(Municipality::class)->allowedIncludes('barangays');
 
-        return MunicipalityResource::collection($cities);
+        if ($perPage === 'all') {
+            return MunicipalityResource::collection($municipalities->get());
+        }
+
+        return MunicipalityResource::collection($municipalities->paginate($perPage));
     }
 
     /**
@@ -38,7 +40,7 @@ class MunicipalityController extends Controller
         $municipality = QueryBuilder::for($query)
             ->allowedIncludes('barangays')
             ->first();
-            
+
         return new MunicipalityResource($municipality);
     }
 }

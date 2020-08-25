@@ -18,11 +18,13 @@ class RegionController extends Controller
     {
         $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
 
-        $regions = QueryBuilder::for(Region::class)
-            ->allowedIncludes('provinces', 'districts')
-            ->paginate($perPage);
+        $regions = QueryBuilder::for(Region::class)->allowedIncludes('provinces', 'districts');
 
-        return RegionResource::collection($regions);
+        if ($perPage === 'all') {
+            return RegionResource::collection($regions->get());
+        }
+
+        return RegionResource::collection($regions->paginate($perPage));
     }
 
     /**
@@ -38,7 +40,7 @@ class RegionController extends Controller
         $region = QueryBuilder::for($query)
             ->allowedIncludes('provinces', 'districts')
             ->first();
-            
+
         return new RegionResource($region);
     }
 }

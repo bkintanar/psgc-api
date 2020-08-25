@@ -18,11 +18,13 @@ class DistrictController extends Controller
     {
         $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
 
-        $districts = QueryBuilder::for(District::class)
-            ->allowedIncludes('cities', 'municipalities')
-            ->paginate($perPage);
+        $districts = QueryBuilder::for(District::class)->allowedIncludes('cities');
 
-        return DistrictResource::collection($districts);
+        if ($perPage === 'all') {
+            return DistrictResource::collection($districts->get());
+        }
+
+        return DistrictResource::collection($districts->paginate($perPage));
     }
 
     /**
@@ -36,9 +38,9 @@ class DistrictController extends Controller
         $query = District::where('id', $district->id);
 
         $district = QueryBuilder::for($query)
-            ->allowedIncludes('cities', 'municipalities')
+            ->allowedIncludes('cities')
             ->first();
-            
+
         return new DistrictResource($district);
     }
 }

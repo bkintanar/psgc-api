@@ -18,11 +18,13 @@ class ProvinceController extends Controller
     {
         $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
 
-        $provinces = QueryBuilder::for(Province::class)
-            ->allowedIncludes('cities', 'municipalities')
-            ->paginate($perPage);
+        $provinces = QueryBuilder::for(Province::class)->allowedIncludes('cities', 'municipalities');
 
-        return ProvinceResource::collection($provinces);
+        if ($perPage === 'all') {
+            return ProvinceResource::collection($provinces->get());
+        }
+
+        return ProvinceResource::collection($provinces->paginate($perPage));
     }
 
     /**
@@ -38,7 +40,7 @@ class ProvinceController extends Controller
         $province = QueryBuilder::for($query)
             ->allowedIncludes('cities', 'municipalities')
             ->first();
-            
+
         return new ProvinceResource($province);
     }
 }

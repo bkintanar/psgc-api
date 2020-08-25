@@ -18,11 +18,13 @@ class SubMunicipalityController extends Controller
     {
         $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
 
-        $cities = QueryBuilder::for(SubMunicipality::class)
-            ->allowedIncludes('barangays')
-            ->paginate($perPage);
+        $subMunicipalities = QueryBuilder::for(SubMunicipality::class)->allowedIncludes('barangays');
 
-        return SubMunicipalityResource::collection($cities);
+        if ($perPage === 'all') {
+            return SubMunicipalityResource::collection($subMunicipalities->get());
+        }
+
+        return SubMunicipalityResource::collection($subMunicipalities->paginate($perPage));
     }
 
     /**
@@ -38,7 +40,7 @@ class SubMunicipalityController extends Controller
         $subMunicipality = QueryBuilder::for($query)
             ->allowedIncludes('barangays')
             ->first();
-            
+
         return new SubMunicipalityResource($subMunicipality);
     }
 }

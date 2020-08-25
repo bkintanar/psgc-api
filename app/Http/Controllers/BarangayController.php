@@ -18,10 +18,13 @@ class BarangayController extends Controller
     {
         $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
 
-        $cities = QueryBuilder::for(Barangay::class)
-            ->paginate($perPage);
+        $barangays = QueryBuilder::for(Barangay::class);
 
-        return BarangayResource::collection($cities);
+        if ($perPage === 'all') {
+            return BarangayResource::collection($barangays->get());
+        }
+
+        return BarangayResource::collection($barangays->paginate($perPage));
     }
 
     /**
@@ -36,7 +39,7 @@ class BarangayController extends Controller
 
         $barangay = QueryBuilder::for($query)
             ->first();
-            
+
         return new BarangayResource($barangay);
     }
 }
