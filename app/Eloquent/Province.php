@@ -37,7 +37,7 @@ class Province extends Model
 
     public function municipalities()
     {
-        return $this->hasMany(Municipality::class);
+        return $this->morphMany(Municipality::class, 'geographic');
     }
 
     public function region()

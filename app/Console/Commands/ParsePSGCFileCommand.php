@@ -116,7 +116,15 @@ class ParsePSGCFileCommand extends Command
 
     private function processMun($data)
     {
-        $data['province_id'] = Province::orderBy('id', 'desc')->pluck('id')->first();
+        $geographic = Province::orderBy('id', 'desc')->first();
+
+        if (in_array($data['code'], ['137606000'])) {
+            $geographic = District::orderBy('id', 'desc')->first();
+        }
+
+        $data['geographic_type'] = get_class($geographic);
+        $data['geographic_id'] = $geographic->id;
+
         Municipality::create($data);
 
         $this->latest = Municipality::class;

@@ -3,6 +3,7 @@
 namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Municipality extends Model
 {
@@ -11,14 +12,14 @@ class Municipality extends Model
      *
      * @var array
      */
-    protected $fillable = ['code', 'province_id', 'name', 'income_class', 'population'];
+    protected $fillable = ['code', 'geographic_type', 'geographic_id', 'name', 'income_class', 'population'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['id', 'province_id'];
+    protected $hidden = ['id', 'geographic_id'];
 
     /**
      * Get the route key for the model.
@@ -38,8 +39,13 @@ class Municipality extends Model
         return $this->morphMany(Barangay::class, 'geographic');
     }
 
-    public function province()
+    /**
+     * Province or District that this municipality belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function geographic(): MorphTo
     {
-        return $this->belongsTo(Province::class);
+        return $this->morphTo();
     }
 }

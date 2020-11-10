@@ -38,7 +38,7 @@ class DistrictController extends Controller
         $query = District::where('id', $district->id);
 
         $district = QueryBuilder::for($query)
-            ->allowedIncludes('cities')
+            ->allowedIncludes('cities', 'municipalities')
             ->first();
 
         return new DistrictResource($district);

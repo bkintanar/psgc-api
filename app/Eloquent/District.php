@@ -35,6 +35,11 @@ class District extends Model
         return $this->morphMany(City::class, 'geographic');
     }
 
+    public function municipalities()
+    {
+        return $this->morphMany(Municipality::class, 'geographic');
+    }
+
     public function region()
     {
         return $this->belongsTo(Region::class);
