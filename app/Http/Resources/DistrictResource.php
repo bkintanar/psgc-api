@@ -15,14 +15,15 @@ class DistrictResource extends JsonResource
      */
     public function toArray($request)
     {
-        $condition = $request->include != 'districts' && ! is_null($request->district) && is_null($request->city) && is_null($request->city) && is_null($request->subMunicipality) && is_null($request->barangay);
+        $condition = $request->include != 'districts' && ! is_null($request->district) && is_null($request->city) && is_null($request->municipality) && is_null($request->subMunicipality) && is_null($request->barangay);
 
         return [
-            'code'       => $this->code,
-            'name'       => $this->name,
-            'population' => $this->population,
-            'region'     => $this->when($condition, new RegionResource($this->region)),
-            'cities'     => CityResource::collection($this->whenLoaded('cities')),
+            'code'           => $this->code,
+            'name'           => $this->name,
+            'population'     => $this->population,
+            'region'         => $this->when($condition, new RegionResource($this->region)),
+            'cities'         => CityResource::collection($this->whenLoaded('cities')),
+            'municipalities' => MunicipalityResource::collection($this->whenLoaded('municipalities')),
         ];
     }
 }

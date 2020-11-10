@@ -16,13 +16,11 @@ class CreateMunicipalitiesTable extends Migration
         Schema::create('municipalities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code')->unique();
-            $table->unsignedBigInteger('province_id');
+            $table->morphs('geographic');
             $table->string('name');
             $table->string('income_class')->nullable();
             $table->bigInteger('population');
             $table->timestamps();
-
-            $table->foreign('province_id')->references('id')->on('provinces');
         });
     }
 
