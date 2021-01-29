@@ -69,7 +69,7 @@ class BarangayResource extends JsonResource
         list($level1, $level1Resource, $level1Index) = $this->level1();
         list($level2, $level2Resource, $level2Index) = $this->level2($level1);
         list($level3, $level3Value, $level3Index) = $this->level3($level2);
-        
+
         $region = isset($level3) ? $level3->region : (get_class($level2) != Region::class ? $level2->region : $level2);
 
         return array_filter([
@@ -98,12 +98,9 @@ class BarangayResource extends JsonResource
     {
         switch (get_class($level1)) {
             case City::class:
+            case Municipality::class:
                 $level2Geographic = $this->level2Geographics[get_class($level1->geographic)];
                 $level2 = $level1->geographic;
-            break;
-            case Municipality::class:
-                $level2Geographic = $this->level2Geographics[get_class($level1->province)];
-                $level2 = $level1->province;
             break;
             case SubMunicipality::class:
                 $level2Geographic = $this->level2Geographics[get_class($level1->city)];
