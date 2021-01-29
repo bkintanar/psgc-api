@@ -61,6 +61,8 @@ class ParsePSGCFileCommand extends Command
                 $this->$methods($data);
             }
         });
+
+        return 0;
     }
 
     private function processReg($data)

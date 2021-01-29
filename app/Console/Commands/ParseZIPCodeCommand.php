@@ -44,6 +44,8 @@ class ParseZIPCodeCommand extends Command
 
             $this->getZipCode($data);
         });
+
+        return 0;
     }
 
     private function getZipCode($data)

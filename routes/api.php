@@ -12,23 +12,31 @@
 |
 */
 
-Route::get('regions', 'RegionController@index')->name('region.index');
-Route::get('regions/{region}', 'RegionController@show')->name('region.show');
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\BarangayController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\MunicipalityController;
+use App\Http\Controllers\SubMunicipalityController;
 
-Route::get('provinces', 'ProvinceController@index')->name('province.index');
-Route::get('provinces/{province}', 'ProvinceController@show')->name('province.show');
+Route::get('regions', [RegionController::class, 'index'])->name('region.index');
+Route::get('regions/{region}', [RegionController::class, 'show'])->name('region.show');
 
-Route::get('districts', 'DistrictController@index')->name('district.index');
-Route::get('districts/{district}', 'DistrictController@show')->name('district.show');
+Route::get('provinces', [ProvinceController::class, 'index'])->name('province.index');
+Route::get('provinces/{province}', [ProvinceController::class, 'show'])->name('province.show');
 
-Route::get('cities', 'CityController@index')->name('city.index');
-Route::get('cities/{city}', 'CityController@show')->name('city.show');
+Route::get('districts', [DistrictController::class, 'index'])->name('district.index');
+Route::get('districts/{district}', [DistrictController::class, 'show'])->name('district.show');
 
-Route::get('municipalities', 'MunicipalityController@index')->name('municipality.index');
-Route::get('municipalities/{municipality}', 'MunicipalityController@show')->name('municipality.show');
+Route::get('cities', [CityController::class, 'index'])->name('city.index');
+Route::get('cities/{city}', [CityController::class, 'show'])->name('city.show');
 
-Route::get('sub-municipalities', 'SubMunicipalityController@index')->name('sub-municipality.index');
-Route::get('sub-municipalities/{subMunicipality}', 'SubMunicipalityController@show')->name('sub-municipality.show');
+Route::get('municipalities', [MunicipalityController::class, 'index'])->name('municipality.index');
+Route::get('municipalities/{municipality}', [MunicipalityController::class, 'show'])->name('municipality.show');
 
-Route::get('barangays', 'BarangayController@index')->name('barangay.index');
-Route::get('barangays/{barangay}', 'BarangayController@show')->name('barangay.show');
+Route::get('sub-municipalities', [SubMunicipalityController::class, 'index'])->name('sub-municipality.index');
+Route::get('sub-municipalities/{subMunicipality}', [SubMunicipalityController::class, 'show'])->name('sub-municipality.show');
+
+Route::get('barangays', [BarangayController::class, 'index'])->name('barangay.index');
+Route::get('barangays/{barangay}', [BarangayController::class, 'show'])->name('barangay.show');
