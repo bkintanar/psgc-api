@@ -38,7 +38,7 @@ class ParsePSGCFileCommand extends Command
     public function handle()
     {
         // source: https://psa.gov.ph/classification/psgc/
-        $filePath = storage_path('psgc-mar2020.csv');
+        $filePath = storage_path('psgc-dec2020.csv');
 
         $rows = SimpleExcelReader::create($filePath)->getRows();
 
