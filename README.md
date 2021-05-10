@@ -1,6 +1,6 @@
 ## PSGC API
 
-Live API can be found in http://bkintanar.site. (Will change once I find the time to get a domain)
+Live API can be found in http://bkintanar-psgc.herokuapp.com. (Will change once I find the time to get a domain)
 
 Postman: https://documenter.getpostman.com/view/78990/SWE3cKFB?version=latest
 
