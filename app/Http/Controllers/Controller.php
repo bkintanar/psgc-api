@@ -16,6 +16,8 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        Visitor::hit();
+        if (! request()->get('health')) {
+            Visitor::hit();
+        }
     }
 }
