@@ -11,10 +11,6 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
-    Route::get('regions', 'RegionController@index')->name('region.index');
-    Route::get('regions/{region}', 'RegionController@show')->name('region.show');
-
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\BarangayController;
