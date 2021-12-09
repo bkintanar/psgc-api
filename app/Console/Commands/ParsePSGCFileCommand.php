@@ -38,7 +38,7 @@ class ParsePSGCFileCommand extends Command
     public function handle()
     {
         // source: https://psa.gov.ph/classification/psgc/
-        $filePath = storage_path('psgc-dec2020.csv');
+        $filePath = storage_path('psgc-jun2021.csv');
 
         $rows = SimpleExcelReader::create($filePath)->getRows();
 
@@ -49,8 +49,8 @@ class ParsePSGCFileCommand extends Command
                 'level'        => $properties['Geographic Level'],
                 'city_class'   => $properties['City Class'],
                 'income_class' => $properties["Income\nClassification"],
-                'urban_rural'  => $properties["Urban / Rural\n(based on 2015 POPCEN)"],
-                'population'   => preg_replace('/\D+/', '', $properties["POPULATION\n(2015 POPCEN)"]),
+                'urban_rural'  => $properties["Urban / Rural\n(based on 2015 Population)"],
+                'population'   => preg_replace('/\D+/', '', $properties["2020 Population"]),
             ];
 
             $data = array_filter($data);
