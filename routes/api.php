@@ -11,7 +11,6 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\BarangayController;
