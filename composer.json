@@ -8,12 +8,12 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^8.0",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "spatie/laravel-query-builder": "^2.3",
+        "spatie/laravel-query-builder": "^3.0",
         "spatie/simple-excel": "^1.2"
     },
     "require-dev": {
