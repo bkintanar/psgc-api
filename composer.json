@@ -8,18 +8,18 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^9.0",
         "laravel/tinker": "^2.0",
-        "spatie/laravel-query-builder": "^3.0",
-        "spatie/simple-excel": "^1.2"
+        "spatie/laravel-query-builder": "^5.1.0",
+        "spatie/simple-excel": "^3.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^5.0",
+        "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.0",
         "spatie/laravel-ignition": "^1.6"
     },
