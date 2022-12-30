@@ -16,7 +16,7 @@ class ProvinceController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
+        $perPage = $request->per_page ?? static::ITEMS_PER_PAGE;
 
         $provinces = QueryBuilder::for(Province::class)->allowedIncludes('cities', 'municipalities');
 

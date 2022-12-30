@@ -9,6 +9,8 @@ use App\Http\Resources\RegionResource;
 
 class RegionController extends Controller
 {
+    const ITEMS_PER_PAGE = 'all';
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +18,7 @@ class RegionController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
+        $perPage = $request->per_page ?? static::ITEMS_PER_PAGE;
 
         $regions = QueryBuilder::for(Region::class)->allowedIncludes('provinces', 'districts');
 
