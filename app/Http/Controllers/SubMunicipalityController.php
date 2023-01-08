@@ -16,7 +16,7 @@ class SubMunicipalityController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->per_page ?? self::ITEMS_PER_PAGE;
+        $perPage = $request->per_page ?? static::ITEMS_PER_PAGE;
 
         $subMunicipalities = QueryBuilder::for(SubMunicipality::class)->allowedIncludes('barangays');
 
