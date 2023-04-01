@@ -27,6 +27,6 @@ class Visitor extends Model
 
     public static function hit()
     {
-        static::firstOrCreate(['ip' => $_SERVER['REMOTE_ADDR'], 'date' => date('Y-m-d')])->save();
+        static::firstOrCreate(['ip' => request()->server->get('REMOTE_ADDR'), 'date' => date('Y-m-d')])->save();
     }
 }
